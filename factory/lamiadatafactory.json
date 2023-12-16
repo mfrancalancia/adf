@@ -1,0 +1,9 @@
+{
+	"name": "lamiadatafactory",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4b524774-3b56-450b-9a94-240e78ccd289",
+		"tenantId": "bcabf3e8-4161-4ec5-9911-b5b7df64148a"
+	}
+}

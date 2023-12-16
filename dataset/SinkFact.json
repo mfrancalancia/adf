@@ -1,0 +1,24 @@
+{
+	"name": "SinkFact",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureShareTargetContainer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "HRfact.csv",
+				"container": "sinkshared"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": null
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

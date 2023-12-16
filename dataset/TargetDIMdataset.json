@@ -1,0 +1,33 @@
+{
+	"name": "TargetDIMdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureShareTargetContainer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "HRDim.csv",
+				"container": "targetfordatashare"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Bus Group",
+				"type": "String"
+			},
+			{
+				"name": "Bus Desc",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

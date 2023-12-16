@@ -1,0 +1,29 @@
+{
+	"name": "TargetShareFACT",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureShareTargetContainer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "HRFactsharedataset.csv",
+				"container": "targetfordatashare"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "BR;Location;Bus Group;SET;Dpt;Grade;Emp Category;Company Category;Company Code;Company Name;Jan-20;Hiring;Exit;ERS;Adj;Feb-20",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

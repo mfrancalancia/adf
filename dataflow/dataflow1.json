@@ -1,0 +1,80 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SinkFact",
+						"type": "DatasetReference"
+					},
+					"name": "sourceFACT"
+				},
+				{
+					"dataset": {
+						"referenceName": "SinkDIM",
+						"type": "DatasetReference"
+					},
+					"name": "sourceDIM"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "joinoutputDataSet",
+						"type": "DatasetReference"
+					},
+					"name": "SinkJOINoutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          BR as string,",
+				"          Location as string,",
+				"          {Bus Group} as string,",
+				"          SET as string,",
+				"          Dpt as short,",
+				"          Grade as string,",
+				"          {Emp Category} as string,",
+				"          {Company Category} as string,",
+				"          {Company Code} as short,",
+				"          {Company Name} as string,",
+				"          {Jan-20} as short,",
+				"          Hiring as boolean,",
+				"          Exit as short,",
+				"          ERS as short,",
+				"          Adj as short,",
+				"          {feb-20} as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceFACT",
+				"source(output(",
+				"          {Bus Group} as string,",
+				"          {Bus Desc} as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceDIM",
+				"sourceFACT, sourceDIM join(sourceFACT@{Bus Group} == sourceDIM@{Bus Group},",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          {Bus Group;Bus Desc} as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkJOINoutput"
+			]
+		}
+	}
+}

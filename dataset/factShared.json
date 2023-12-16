@@ -1,0 +1,24 @@
+{
+	"name": "factShared",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureShareTargetContainer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "HRFactsharedataset.csv",
+				"container": "targetfordatashare"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

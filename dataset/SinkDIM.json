@@ -1,0 +1,32 @@
+{
+	"name": "SinkDIM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureShareTargetContainer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "sinkshared"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Bus Group",
+				"type": "String"
+			},
+			{
+				"name": "Bus Desc",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
